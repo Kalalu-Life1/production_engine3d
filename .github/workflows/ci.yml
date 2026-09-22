@@ -1,0 +1,33 @@
+name: 3D Engine Production Verification Pipeline
+
+# Trigger the automation script every single time a push lands on the main branch
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify-build-and-memory:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 1. Clone Code Packages from Repository Grid
+      uses: actions/checkout@v4
+
+    - name: 2. Mount Corporate Developer Subsystem Toolchains
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake clang valgrind libsdl2-dev libgtest-dev
+
+    - name: 3. Verify Asset Compilation Engine
+      run: |
+        # Re-bake raw data geometry matrices natively inside the cloud environment
+        clang++ -Wall -Wextra -Werror -O3 tools/asset_cooker.cpp -o tools/asset_cooker
+        ./tools/asset_cooker assets/diamond.obj assets/diamond.mesh
+
+    - name: 4. Execute Unified Quality Verification Pipeline
+      run: |
+        # Give script run permissions and execute the master test matrix pipeline
+        chmod +x verify_pipeline.sh
+        ./verify_pipeline.sh
