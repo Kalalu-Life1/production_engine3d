@@ -1,0 +1,24 @@
+# Production Git Ignore Blueprint File Matrix
+
+# Ignore compiled binary executables
+EngineApp
+RunTests
+asset_cooker
+
+# Ignore full local automated build directories
+build/
+bin/
+obj/
+
+# Ignore local configuration dumps and output log trackers
+*.log
+output.txt
+pipeline_errors.txt
+
+# Ignore cooked binary meshes and runtime dependencies
+*.mesh
+.cmake/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
