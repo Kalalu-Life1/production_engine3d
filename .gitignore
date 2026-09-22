@@ -22,3 +22,7 @@ CMakeCache.txt
 CMakeFiles/
 Makefile
 cmake_install.cmake
+build_output.log
+pipeline_errors.txt
+1.tx
+2.txt
